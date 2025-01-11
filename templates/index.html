@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendador de Diagnóstico</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #a5d6a7;
+            overflow: hidden;
+            color: #ffffff;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            z-index: 1;
+            color: #004d40;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 12px;
+            font-size: 1em;
+            margin-bottom: 15px;
+            border: 2px solid #00796b;
+            border-radius: 10px;
+            outline: none;
+            width: 100%;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            background: #00796b;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #004d40;
+        }
+    </style>
+</head>
+<body>
+    <!-- Content -->
+    <div class="container">
+        <h1>🩺 Diagnóstico de Enfermedades</h1>
+        <p>Ingresa el nombre de la enfermedad para obtener diagnóstico y recomendaciones.</p>
+        <form action="/diagnostico" method="POST">
+            <input type="text" name="enfermedad" placeholder="Ejemplo: diabetes, hipertensión,gripe" required>
+            <button type="submit">Obtener Diagnóstico</button>
+        </form>
+    </div>
+</body>
+</html>
