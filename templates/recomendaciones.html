@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recomendaciones de Tratamiento</title>
+    <title>Recomendaciones de tratamiento</title>
     <style>
-        /* Global Styles */
+        /* Estilos globales */
         body {
             font-family: 'Poppins', Arial, sans-serif;
             height: 100%;
@@ -46,13 +46,13 @@
             color: #004d40;
         }
 
-        /* List */
+        /* Lista */
         ul {
             list-style: none;
             padding: 0;
             margin: 0;
             max-height: 300px;
-            overflow-y: auto; /* Adds scroll if the list is too long */
+            overflow-y: auto;
         }
 
         li {
@@ -81,7 +81,7 @@
             background: #004d40;
         }
 
-        /* Responsive adjustments for mobile */
+        /* Ajustes responsivos para dispositivos móviles */
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
@@ -114,13 +114,10 @@
     </style>
 </head>
 <body>
-
     <div class="container">
         <h1>🩺 Diagnóstico y Recomendaciones</h1>
-        
         {% for enfermedad, diagnostico in diagnosticos.items() %}
             <h2>{{ enfermedad.capitalize() }}</h2>
-            
             {% if diagnostico %}
                 <p><strong>Recomendaciones:</strong></p>
                 <ul>
@@ -132,9 +129,7 @@
                 <p>No se encontraron datos para esta enfermedad.</p>
             {% endif %}
         {% endfor %}
-        
         <a href="/">Volver</a>
     </div>
-
 </body>
 </html>
