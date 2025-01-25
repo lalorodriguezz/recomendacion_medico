@@ -10,34 +10,34 @@
             font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            height: 100%;
             background: linear-gradient(145deg, #4caf50, #388e3c);
             color: #fff;
-            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Ajusta el contenido al principio */
+            padding-top: 60px; /* Deja espacio para la barra de navegación */
         }
 
         .container {
             text-align: center;
             background: rgba(255, 255, 255, 0.9);
-            padding: 40px 60px;
+            padding: 40px 20px;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             max-width: 600px;
             width: 100%;
-            overflow: hidden;
+            margin: 20px; /* Añadimos márgenes para que se vea mejor en móviles */
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             margin-bottom: 15px;
             color: #388e3c;
         }
 
         p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             margin-bottom: 20px;
             color: #388e3c;
         }
@@ -45,18 +45,19 @@
         /* Card-style checkboxes for diseases */
         .disease-selection {
             display: flex;
-            justify-content: space-around;
             flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px; /* Espacio entre las tarjetas */
             margin: 20px 0;
         }
 
         .disease-card {
             background-color: #ffffff;
             color: #388e3c;
-            padding: 20px;
-            margin: 10px;
+            padding: 15px;
+            margin: 5px;
             border-radius: 12px;
-            width: 120px;
+            width: 130px;
             text-align: center;
             cursor: pointer;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -79,7 +80,6 @@
 
         .disease-card label {
             cursor: pointer;
-            display: block;
             font-weight: 500;
         }
 
@@ -104,14 +104,14 @@
             background: #1b4d21;
         }
 
-        /* Responsive adjustments */
+        /* Responsive adjustments for mobile */
         @media (max-width: 768px) {
             .container {
-                padding: 20px 30px;
+                padding: 20px;
             }
 
             h1 {
-                font-size: 2rem;
+                font-size: 1.7rem;
             }
 
             p {
@@ -119,7 +119,7 @@
             }
 
             .disease-card {
-                width: 100%;
+                width: 45%; /* Reducimos el tamaño de las tarjetas en móviles */
                 margin: 10px 0;
             }
 
@@ -128,8 +128,8 @@
             }
         }
 
-        /* Link to view patient records */
-        .view-records-link {
+        /* Links for records and register */
+        .view-records-link, .register-patient-link {
             display: inline-block;
             margin-top: 20px;
             padding: 10px 20px;
@@ -140,23 +140,7 @@
             font-size: 1.1em;
         }
 
-        .view-records-link:hover {
-            background-color: #004d40;
-        }
-
-        /* Link to register patient */
-        .register-patient-link {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: #00796b;
-            color: #ffffff;
-            border-radius: 10px;
-            text-decoration: none;
-            font-size: 1.1em;
-        }
-
-        .register-patient-link:hover {
+        .view-records-link:hover, .register-patient-link:hover {
             background-color: #004d40;
         }
     </style>
