@@ -82,23 +82,23 @@
 <body>
 
     <div class="container">
-        <h1>🩺 Diagnóstico para "{{ enfermedad }}"</h1>
-        {% if diagnostico %}
-            <p><strong>Causas posibles:</strong></p>
-            <ul>
-                {% for causa in diagnostico.causas %}
-                    <li>{{ causa }}</li>
-                {% endfor %}
-            </ul>
-            <p><strong>Recomendaciones:</strong></p>
-            <ul>
-                {% for recomendacion in diagnostico.recomendaciones %}
-                    <li>{{ recomendacion }}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No se encontraron datos para la enfermedad ingresada.</p>
-        {% endif %}
+        <h1>🩺 Diagnóstico y Recomendaciones</h1>
+        
+        {% for enfermedad, diagnostico in diagnosticos.items() %}
+            <h2>{{ enfermedad.capitalize() }}</h2>
+            
+            {% if diagnostico %}
+                <p><strong>Recomendaciones:</strong></p>
+                <ul>
+                    {% for recomendacion in diagnostico.recomendaciones %}
+                        <li>{{ recomendacion }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No se encontraron datos para esta enfermedad.</p>
+            {% endif %}
+        {% endfor %}
+        
         <a href="/">Volver</a>
     </div>
 

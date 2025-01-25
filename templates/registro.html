@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Paciente</title>
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #a5d6a7;
+            margin: 0;
+            color: #004d40;
+        }
+        .form-container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 1em;
+            margin-top: 10px;
+            display: block;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #00796b;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #004d40;
+        }
+        .back-button {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            margin-top: 15px;
+            background: #388e3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-button:hover {
+            background: #2c6b2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Registro de Paciente</h1>
+        <form action="/registro" method="POST">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" name="apellidos" required>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" name="telefono" required>
+
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" required>
+
+            <label for="fecha_cita">Fecha de la Cita:</label>
+            <input type="date" id="fecha_cita" name="fecha_cita" required>
+
+            <button type="submit">Registrar</button>
+        </form>
+
+        <!-- Botón para volver al índice -->
+        <a href="/" class="back-button">Volver al inicio</a>
+    </div>
+</body>
+</html>

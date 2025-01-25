@@ -8,56 +8,156 @@
         /* Global Styles */
         body {
             font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #a5d6a7;
+            background: linear-gradient(145deg, #4caf50, #388e3c);
+            color: #fff;
             overflow: hidden;
-            color: #ffffff;
         }
 
         .container {
-            position: relative;
             text-align: center;
-            z-index: 1;
-            color: #004d40;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 60px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            overflow: hidden;
         }
 
         h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #388e3c;
         }
 
         p {
-            font-size: 1.2em;
+            font-size: 1.1rem;
             margin-bottom: 20px;
+            color: #388e3c;
         }
 
-        input {
-            padding: 12px;
-            font-size: 1em;
-            margin-bottom: 15px;
-            border: 2px solid #00796b;
-            border-radius: 10px;
-            outline: none;
-            width: 100%;
+        /* Card-style checkboxes for diseases */
+        .disease-selection {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .disease-card {
+            background-color: #ffffff;
+            color: #388e3c;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 12px;
+            width: 120px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .disease-card:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .disease-card.selected {
+            background-color: #388e3c;
+            color: #ffffff;
+        }
+
+        .disease-card input {
+            display: none;
+        }
+
+        .disease-card label {
+            cursor: pointer;
+            display: block;
+            font-weight: 500;
         }
 
         button {
             width: 100%;
-            padding: 12px;
-            font-size: 1em;
-            background: #00796b;
-            color: #ffffff;
+            padding: 15px;
+            font-size: 1.1rem;
+            background: #388e3c;
+            color: #fff;
             border: none;
             border-radius: 10px;
             cursor: pointer;
             transition: background 0.3s ease;
+            margin-top: 20px;
         }
 
         button:hover {
-            background: #004d40;
+            background: #2c6b2f;
+        }
+
+        button:active {
+            background: #1b4d21;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 30px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .disease-card {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            button {
+                padding: 12px;
+            }
+        }
+
+        /* Link to view patient records */
+        .view-records-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #00796b;
+            color: #ffffff;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .view-records-link:hover {
+            background-color: #004d40;
+        }
+
+        /* Link to register patient */
+        .register-patient-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #00796b;
+            color: #ffffff;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .register-patient-link:hover {
+            background-color: #004d40;
         }
     </style>
 </head>
@@ -65,11 +165,42 @@
     <!-- Content -->
     <div class="container">
         <h1>🩺 Diagnóstico de Enfermedades</h1>
-        <p>Ingresa el nombre de la enfermedad para obtener diagnóstico y recomendaciones.</p>
+        <p>Selecciona una o más enfermedades para obtener diagnóstico y recomendaciones.</p>
         <form action="/diagnostico" method="POST">
-            <input type="text" name="enfermedad" placeholder="Ejemplo: diabetes, hipertensión,gripe" required>
+            <div class="disease-selection">
+                <div class="disease-card">
+                    <input type="checkbox" name="enfermedades" value="diabetes" id="diabetes">
+                    <label for="diabetes">Diabetes</label>
+                </div>
+                <div class="disease-card">
+                    <input type="checkbox" name="enfermedades" value="hipertension" id="hipertension">
+                    <label for="hipertension">Hipertensión</label>
+                </div>
+                <div class="disease-card">
+                    <input type="checkbox" name="enfermedades" value="gripe" id="gripe">
+                    <label for="gripe">Gripe</label>
+                </div>
+            </div>
             <button type="submit">Obtener Diagnóstico</button>
         </form>
+        
+        <!-- Link to view all patient records -->
+        <a href="/ver_registros" class="view-records-link">Ver todos los registros</a>
+
+        <!-- Link to register a new patient -->
+        <a href="/registro" class="register-patient-link">Registrar paciente</a>
     </div>
+
+    <script>
+        // Optional: Toggle the "selected" class when a checkbox is checked
+        const diseaseCards = document.querySelectorAll('.disease-card');
+        diseaseCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const checkbox = card.querySelector('input[type="checkbox"]');
+                checkbox.checked = !checkbox.checked;  // Toggle checkbox state
+                card.classList.toggle('selected', checkbox.checked);  // Add/remove selected class
+            });
+        });
+    </script>
 </body>
 </html>

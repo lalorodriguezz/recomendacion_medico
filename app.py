@@ -3,7 +3,7 @@ import unicodedata
 
 app = Flask(__name__)
 
-# Diccionario con las enfermedades, causas y recomendaciones
+# Diccionario con las enfermedades, causas y recomendaciones  
 ENFERMEDADES = {
     "diabetes": {
         "causas": [
@@ -47,6 +47,9 @@ ENFERMEDADES = {
     }
 }
 
+# Lista de registros de pacientes (esto es solo un ejemplo, puedes almacenarlos en una base de datos)
+registros_pacientes = []
+
 # Función para normalizar texto (eliminar tildes y convertir a minúsculas)
 def normalizar_texto(texto):
     return ''.join(
@@ -62,9 +65,45 @@ def index():
 # Ruta para mostrar diagnóstico y recomendaciones
 @app.route('/diagnostico', methods=['POST'])
 def diagnostico():
-    enfermedad = normalizar_texto(request.form.get('enfermedad').strip())
-    diagnostico = ENFERMEDADES.get(enfermedad, None)
-    return render_template('recomendaciones.html', enfermedad=enfermedad, diagnostico=diagnostico)
+    # Obtener las enfermedades seleccionadas
+    enfermedades_seleccionadas = request.form.getlist('enfermedades')
+    diagnosticos = {}
+    
+    # Obtener diagnóstico para cada enfermedad seleccionada
+    for enfermedad in enfermedades_seleccionadas:
+        diagnosticos[enfermedad] = ENFERMEDADES.get(enfermedad, None)
+    
+    return render_template('recomendaciones.html', diagnosticos=diagnosticos)
+
+# Ruta para el registro de pacientes
+@app.route('/registro', methods=['GET', 'POST'])
+def registro():
+    if request.method == 'POST':
+        # Obtener los datos del formulario
+        nombre = request.form.get('nombre')
+        apellidos = request.form.get('apellidos')
+        telefono = request.form.get('telefono')
+        direccion = request.form.get('direccion')
+        fecha_cita = request.form.get('fecha_cita')
+
+        # Almacenar el registro del paciente en la lista
+        registros_pacientes.append({
+            "nombre": nombre,
+            "apellidos": apellidos,
+            "telefono": telefono,
+            "direccion": direccion,
+            "fecha_cita": fecha_cita
+        })
+
+        # Redirigir o mostrar un mensaje de éxito
+        return "Registro exitoso"
+
+    return render_template('registro.html')
+
+# Ruta para mostrar todos los registros de pacientes
+@app.route('/ver_registros', methods=['GET'])
+def ver_registros():
+    return render_template('ver_registros.html', registros=registros_pacientes)
 
 if __name__ == "__main__":
     app.run(debug=True)

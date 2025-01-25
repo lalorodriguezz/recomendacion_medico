@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registros de Pacientes</title>
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: #a5d6a7;
+            color: #004d40;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            overflow-x: auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #00796b;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f3f3f3;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #00796b;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        a:hover {
+            background-color: #004d40;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Registros de Pacientes</h1>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Fecha de Cita</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for registro in registros %}
+                    <tr>
+                        <td>{{ registro.nombre }}</td>
+                        <td>{{ registro.apellidos }}</td>
+                        <td>{{ registro.telefono }}</td>
+                        <td>{{ registro.direccion }}</td>
+                        <td>{{ registro.fecha_cita }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="/">Volver a la página de inicio</a>
+    </div>
+
+</body>
+</html>
